@@ -7,10 +7,12 @@
     "body-parser": "^1.18.3",
     "debug": "^4.1.0",
     "express": "^4.16.4",
-    "fs.js": "0.0.1"
+    "fs.js": "0.0.1",
+    "mongoose": "^4.1.2"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node transac.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
