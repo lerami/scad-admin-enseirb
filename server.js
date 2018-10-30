@@ -1,15 +1,20 @@
-const bodyParser = require('body-parser')
-var fs = require('fs');
-var express = require("express")
+// Import dependencies
+const express = require("express");
+const bodyParser = require('body-parser');
+const fs = require('fs');
 const mongoose = require('mongoose');
-const URI = "mongodb://teamscad:!teamscad2018@scad-shard-00-00-nayx1.mongodb.net:27017,scad-shard-00-01-nayx1.mongodb.net:27017,scad-shard-00-02-nayx1.mongodb.net:27017/test?replicaSet=scad-shard-0&ssl=true";
 
-var app = express()
+// Setting config
+require('dotenv').config()
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+// Create the app
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-mongoose.connect(URI, { useMongoClient: true });
+// Connect to the DB
+mongoose.connect(process.env.DATABASE, { useMongoClient: true });
+
 
 app.post("/transactions", function (req, res) {
 
@@ -51,6 +56,6 @@ app.post("/transactions", function (req, res) {
 
 app.listen(3000, () => {
   console.log("En attente de requêtes...")
-})
+});
 
 
