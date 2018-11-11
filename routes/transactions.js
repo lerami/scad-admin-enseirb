@@ -7,40 +7,40 @@ router.use(function timeLog(req, res, next) {
   next();
 });
 // home page
-router.post("/", function (req, res) {
+router.post('/', function (req, res) {
 
-    if (req.body.action == "Ajout") {
+    if (req.body.action == 'Ajout') {
       var read_string = fs.readFile('test.txt', 'utf-8', function (err, data) {
         if (err) {
           return console.error(err);
         }
         console.log(data);
-        fs.writeFile('test.txt', data + "\n [AJOUT] " + req.body.name, function (err, data) {
+        fs.writeFile('test.txt', data + '\n [AJOUT] ' + req.body.name, function (err, data) {
           if (err) {
             return console.error(err);
           }
           console.log('file is written asynchronously');
         })
       })
-      res.send("Sucess")
+      res.send('Success')
     }
-    else if (req.body.action == "Delete") {
+    else if (req.body.action == 'Delete') {
       var read_string = fs.readFile('test.txt', 'utf-8', function (err, data) {
         if (err) {
           return console.error(err);
         }
         console.log(data);
-        fs.writeFile('test.txt', data + "\n [DELETE] " + req.body.name, function (err, data) {
+        fs.writeFile('test.txt', data + '\n [DELETE] ' + req.body.name, function (err, data) {
           if (err) {
             return console.error(err);
           }
           console.log('file is written asynchronously');
         })
       })
-      res.send("Sucess")
+      res.send('Success')
     }
     else {
-      res.send("erreur")
+      res.send('error')
     }
   })
 
