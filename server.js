@@ -1,7 +1,7 @@
 // Import dependencies
 const express = require("express");
 const bodyParser = require('body-parser');
-const fs = require('fs');
+
 const mongoose = require('mongoose');
 
 // Import routes
