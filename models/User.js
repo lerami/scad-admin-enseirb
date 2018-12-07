@@ -41,7 +41,7 @@ var User = new mongoose.Schema({
  */
 
 User.methods.generateAuthToken = function(){
-    return jwt.sign(this._id, JWT_SECRET);
+    return jwt.sign(this.id, JWT_SECRET);
   };
 
 User.methods.checkPassword = function(password) {
