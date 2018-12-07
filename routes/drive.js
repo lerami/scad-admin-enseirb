@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const fs = require('fs');
+const UserController = require('../controllers/UserController');
 
 router.post('/upload', function (req, res) {
     if(!req.files) {
