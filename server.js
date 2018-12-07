@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
 var database = process.env.DATABASE || "mongodb://localhost:27017";
 
+const User = require('./models/User');
+
 // Import routes
 const transactions = require('./routes/transactions');
 const drive = require('./routes/drive')
