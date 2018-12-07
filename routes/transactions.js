@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 const fs = require('fs');
+
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
   console.log('Time: ', Date.now());
   next();
 });
-// home page
 
 //ADD-POST
 router.post('/', function (req, res) {

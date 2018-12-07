@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 // Import routes
-var transactions = require('./routes/transactions');
+const transactions = require('./routes/transactions');
+const drive = require('./routes/drive')
 
 // Setting config
 require('dotenv').config()
@@ -16,7 +17,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Use routes
-app.use('/transactions',transactions);
+app.use('/transactions', transactions);
+app.use('/drive', drive);
 
 // Connect to the DB
 mongoose.connect(process.env.DATABASE, { useMongoClient: true });
