@@ -3,6 +3,8 @@ const express = require("express");
 const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
+var port = process.env.PORT || 3000;
+var database = process.env.DATABASE || "mongodb://localhost:27017";
 
 // Import routes
 const transactions = require('./routes/transactions');
@@ -21,10 +23,10 @@ app.use('/transactions', transactions);
 app.use('/drive', drive);
 
 // Connect to the DB
-mongoose.connect(process.env.DATABASE, { useMongoClient: true });
+mongoose.connect(database, { useMongoClient: true });
 
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("En attente de requêtes...")
 });
 
