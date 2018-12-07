@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt-nodejs');
 var JWT_SECRET = process.env.JWT_SECRET || 'shhhhh';
 
 /* 
@@ -44,12 +45,22 @@ User.methods.generateAuthToken = function(){
   };
 
 User.methods.checkPassword = function(password) {
-    
+    return bcrypt.compareSync(password, this.password);
 }
 
 /*
 Static methods
  */
+
+User.statics.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+  };
+
+User.statics.findOneByEmail = function(email){
+    return this.findOne({
+      email: new RegExp('^' + email + '$', 'i')
+    });
+  };
 
 User.statics.getByToken = function(token, callback){
     jwt.verify(token, JWT_SECRET, function(err, id){
@@ -62,4 +73,4 @@ User.statics.getByToken = function(token, callback){
   
 
 
-//module.exports = mongoose.model('User', User);
+module.exports = mongoose.model('User', User);
