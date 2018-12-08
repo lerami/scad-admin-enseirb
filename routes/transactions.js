@@ -18,8 +18,7 @@ router.post('/', function (req, res) {
           if (err) {
             return console.error(err);
           }
-          console.log(data);
-          fs.writeFile('test.txt', data + '\n [AJOUT] ' + req.body.name +' at  ' + day +'/' + month + '/' + year +'-'+reference.getHours()+":"+reference.getMinutes()+":"+reference.getSeconds()+'\n', function (err, data) {
+          fs.writeFile('test.txt', data + '\n [AJOUT] ' + req.body.user +' at  ' + day +'/' + month + '/' + year +'-'+reference.getHours()+":"+reference.getMinutes()+":"+reference.getSeconds()+'\n', function (err, data) {
             if (err) {
               return console.error(err);
             }
@@ -39,8 +38,7 @@ router.post('/', function (req, res) {
         if (err) {
           return console.error(err);
         }
-        console.log(data);
-        fs.writeFile('test.txt', data + '\n [DELETE] ' + req.body.name +' at  ' + day +'/' + month + '/' + year +'-'+reference.getHours()+":"+reference.getMinutes()+":"+reference.getSeconds()+'\n', function (err, data) {
+        fs.writeFile('test.txt', data + '\n [DELETE] ' + req.body.transaction.user +' at  ' + day +'/' + month + '/' + year +'-'+reference.getHours()+":"+reference.getMinutes()+":"+reference.getSeconds()+'\n', function (err, data) {
           if (err) {
             return console.error(err);
           }
