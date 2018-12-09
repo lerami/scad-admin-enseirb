@@ -30,18 +30,17 @@ router.post('/users/:id/upload', function (req, res) {
         return res.status(400).send('No files uploaded');
     }
 
-    UserController.uploadFile(id, req.file, (err,user) => {
+    UserController.uploadFile(id, req.file, (err, user) => {
         if (err) return res.status(400).send(err);
         return res.send();
     })
-
 })
 
 router.get('/users/:id/download/:fileId', function (req, res) {
     let id = req.params.id
     let fileId = req.params.fileId;
 
-    UserController.downloadFile(id, fileId, (err,user) => {
+    UserController.downloadFile(id, fileId, (err, user) => {
         if (err) return res.status(400).send(err);
         return res.send();
     })
