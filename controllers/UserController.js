@@ -129,4 +129,20 @@ UserController.getById = function (id, callback) {
     User.findById(id, callback);
 };
 
+/**
+ * Upload a file on the cloud using Google Drive API
+ * @param  {int}   id    User's id.
+ * @param  {file}   file File to upload
+ * @param  {Function} callback args(err, user)
+ */
+UserController.uploadFile = function (id, files, callback) {
+    User.findOne({
+        _id: id
+    }, (err, user) => {
+        if (err || !user) return callback(err);
+        Drive.uploadFile();
+        return callback(null, user);
+    })
+};
+
 module.exports = UserController;

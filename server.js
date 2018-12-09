@@ -10,7 +10,7 @@ const User = require('./models/User');
 
 // Import routes
 const transactions = require('./routes/transactions');
-const drive = require('./routes/drive');
+const api = require('./routes/api');
 const auth = require('./routes/auth');
 
 // Setting config
@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Use routes
 app.use('/transactions', transactions);
-app.use('/drive', drive);
+app.use('/api', api);
 app.use('/auth', auth);
 
 // Connect to the DB
