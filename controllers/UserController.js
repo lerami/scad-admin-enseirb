@@ -36,7 +36,7 @@ UserController.loginWithPassword = function (email, password, callback) {
 
     User
         .findOneByEmail(email)
-        .select('+password')
+        .select('password')
         .exec(function (err, user) {
             if (err) {
                 return callback(err);
