@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const validator = require('validator');
+const Drive = require('../drive');
 
 var UserController = {};
 
@@ -135,14 +136,31 @@ UserController.getById = function (id, callback) {
  * @param  {file}   file File to upload
  * @param  {Function} callback args(err, user)
  */
-UserController.uploadFile = function (id, files, callback) {
+UserController.uploadFile = function (id, file, callback) {
     User.findOne({
         _id: id
     }, (err, user) => {
         if (err || !user) return callback(err);
-        Drive.uploadFile();
+        Drive.uploadFile(file, 'name-of-the-file');
         return callback(null, user);
     })
 };
+
+/**
+ * Download a file from the cloud using Google Drive API
+ * @param  {int}   id    User's id.
+ * @param  {int}   fileId Id's file
+ * @param  {Function} callback args(err, user)
+ */
+UserController.downloadFile = function (id, fileId, callback) {
+    User.findOne({
+        _id: id
+    }, (err, user) => {
+        if (err || !user) return callback(err);
+        Drive.downloadFile(fileId);
+        return callback(null, user);
+    })
+};
+
 
 module.exports = UserController;

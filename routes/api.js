@@ -23,22 +23,28 @@ function isAdmin(req, res, next) {
     })
 }
 
-router.post('/uploadFile', function (req, res) {
+router.post('/users/:id/upload', function (req, res) {
     let id = req.params.id;
 
     if (!req.files) {
         return res.status(400).send('No files uploaded');
     }
 
-    UserController.uploadFile(id, req.files, (err,user) => {
+    UserController.uploadFile(id, req.file, (err,user) => {
         if (err) return res.status(400).send(err);
         return res.send();
     })
 
 })
 
-router.get('/downloadFile', function (req, res) {
+router.get('/users/:id/download/:fileId', function (req, res) {
+    let id = req.params.id
+    let fileId = req.params.fileId;
 
+    UserController.downloadFile(id, fileId, (err,user) => {
+        if (err) return res.status(400).send(err);
+        return res.send();
+    })
 })
 
 module.exports = router;
