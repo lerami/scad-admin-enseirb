@@ -254,7 +254,7 @@ function _downloadFile(auth, param) {
             res.data
                 .on('end', () => {
                     console.log(`Downloaded file ${fileId}`);
-                    decypt(fileId, `./${fileId}_encrypted_download`, "key");
+                    decrypt(fileId, `./${fileId}_encrypted_download`, "key");
                 })
                 .on('error', err => {
                     console.log('Error', err);
@@ -263,7 +263,7 @@ function _downloadFile(auth, param) {
         });
 }
 
-function decypt(fileId, cipherFile, fileKey) {
+function decrypt(fileId, cipherFile, fileKey) {
     var dest = fs.createWriteStream(`./${fileId}_download`);
     var data = fs.readFileSync(cipherFile);
     console.log("File decrypted");
